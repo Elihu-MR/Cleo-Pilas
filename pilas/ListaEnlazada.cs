@@ -85,19 +85,15 @@ y2+=1;
     printxy(0,14,"");
 }
 
-public int contenedor(int x, int  y){ // Muestra todos los contenedores de la lista
+public void contenedor(int x, int  y){ // Muestra todos los contenedores de la lista
 Nodo actual = primero;
-contador = 0;
     while (actual != null ){
         printxy(x, y+=1, "╔═══════════════════════════╗");
         printxy(x, y+=1, "║                           ║");
         printxy(x, y+=1, "╚═══════════════════════════╝");
         printxy(x+2, y-1, $"{actual.Valor1} {actual.Valor2}");
         actual = actual.Siguiente;
-        contador += 3;
     }
-    if (contador == 0) return 3;
-    else return contador;
 }
 
 public void retirado(int x, int  y){ // Muestra Solo El Ultimo Contenedor de la lista (para mostrar contenedores retirados)
@@ -114,14 +110,14 @@ Nodo actual = primero;
 public void enlistarTotales(int x, int  y){ // Muestra los contenedores actuales de cada ciudad y el total de contenedores actuales
 int posicion = 1, y2=y;
 Nodo actual = primero;
-printxy(x, y+=1, "╔═══════════════════════════════╗");
-printxy(x, y+=1, "║                               ║");
-printxy(x, y+=1, "╠═══════════════════════════════╣");
-printxy(x, y+=1, "║                               ║");
-printxy(x, y+=1, "╚═══════════════════════════════╝");
+printxy(x, y+=1, "╔═════════════════════╗");
+printxy(x, y+=1, "║                     ║");
+printxy(x, y+=1, "╠═════════════════════╣");
+printxy(x, y+=1, "║                     ║");
+printxy(x, y+=1, "╚═════════════════════╝");
 
-printxy(x+12, y2+=2, ciudad);
-printxy(x+8, y2+=2, $"Contenedores: {contador}");
+printxy(x+7, y2+=2, ciudad);
+printxy(x+3, y2+=2, $"Contenedores: {contador}");
 }
 
     public static void printxy(int x, int y, string mensaje){

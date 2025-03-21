@@ -239,7 +239,7 @@ printxy(0, y+=1, "╚═══════════════════�
             }
         } while (opcion < 1 || opcion > contador);
 
-        if (areaSeleccionada.contador == 5) {
+        if (areaSeleccionada.contador >= 5) {
             
             Console.ForegroundColor = ConsoleColor.Red;
             printxy(3, y+=2, "No Se Puede Agregar Contenedor, El Area Esta Llena");
@@ -266,9 +266,10 @@ printxy(0, y+=1, "╚═══════════════════�
     } while (resp == "S");
 }
 
+
 public static void retirarContenedor(){
     string resp="",lectura,codigo="";
-    int y, opcion=0, contador;
+    int y, opcion=0, contador, x=0;
     listasEnlazada areaSeleccionada = null, retiradosSeleccionados = null;
     object valor1, valor2;
     bool encontrado;
@@ -279,24 +280,24 @@ public static void retirarContenedor(){
         Console.Clear();
         gotoxy(10, y);
         titulo("Retirar Contenedor");
+x=6;
+printxy(x, y+=2, "╔═══════════════════════════════╗");
+printxy(x, y+=1, "║                               ║");
+printxy(x, y+=1, "╠═══════════════════════════════╣");
+printxy(x, y+=1, "║                               ║");
+printxy(x, y+=1, "║                               ║");
+printxy(x, y+=1, "║                               ║");
+printxy(x, y+=1, "║                               ║");
+printxy(x, y+=1, "║                               ║");
+printxy(x, y+=1, "║                               ║");
+printxy(x, y+=1, "╚═══════════════════════════════╝");
 
-printxy(0, y+=2, "╔═══════════════════════════════╗");
-printxy(0, y+=1, "║                               ║");
-printxy(0, y+=1, "╠═══════════════════════════════╣");
-printxy(0, y+=1, "║                               ║");
-printxy(0, y+=1, "║                               ║");
-printxy(0, y+=1, "║                               ║");
-printxy(0, y+=1, "║                               ║");
-printxy(0, y+=1, "║                               ║");
-printxy(0, y+=1, "║                               ║");
-printxy(0, y+=1, "╚═══════════════════════════════╝");
-
-        printxy(5, y=3, "Areas");
+        printxy(11, y=3, "Areas");
         y+=1;
 
         for (int i =0; i < areas.Length; i++) {
             if (areas[i] != null) {
-                printxy(2, y+=1, $"{i+ 1}) {areas[i].ciudad}");
+                printxy(8, y+=1, $"{i+ 1}) {areas[i].ciudad}");
                 contador +=1;
             }
         }
@@ -318,49 +319,49 @@ printxy(0, y+=1, "╚═══════════════════�
             if (areas[opcion-1].contador > 0){
             y = 0;
             Console.Clear();
-            gotoxy(7, y);
+            gotoxy(14, y);
             titulo("Retirar Contenedor");
 
-            areas[opcion-1].enlistar(0, y);
+            areas[opcion-1].enlistar(7, y);
             y+=13;
 
-            printxy(0, y, $"Ingresa El Codigo Del Contenedor a Retirar:");
-            gotoxy(45, y);
+            printxy(0, y, $"Ingresa El Codigo Del Contenedor:");
+            gotoxy(34, y);
             codigo = Console.ReadLine();
             encontrado = areaSeleccionada.buscarPorValor(codigo);
 
             if (encontrado){
-                gotoxy(45, 0); titulo(areaSeleccionada.ciudad);
-                gotoxy(75, 0); titulo("Retirados");
+                gotoxy(57, 0); titulo(areaSeleccionada.ciudad);
+                gotoxy(86, 0); titulo("Retirados");
             y=0;
                 do{
                     (valor1, valor2) = areaSeleccionada.eliminarCima();
                     if (valor1.Equals(codigo)){
                         Console.ForegroundColor = ConsoleColor.Red;
-                        printxy(66, y+=1, "╔═══════════════════════════╗");
-                        printxy(66, y+=1, "║                           ║");
-                        printxy(66, y+=1, "╚═══════════════════════════╝");
-                        printxy(68, y-1, $"{valor1} {valor2}");
+                        printxy(82, y+=1, "╔═══════════════════════════╗");
+                        printxy(82, y+=1, "║                           ║");
+                        printxy(82, y+=1, "╚═══════════════════════════╝");
+                        printxy(84, y-1, $"{valor1} {valor2}");
                         Console.ForegroundColor = ConsoleColor.Black;
                     } else {
-                        printxy(66, y+=1, "╔═══════════════════════════╗");
-                        printxy(66, y+=1, "║                           ║");
-                        printxy(66, y+=1, "╚═══════════════════════════╝");
-                        printxy(68, y-1, $"{valor1} {valor2}");
+                        printxy(82, y+=1, "╔═══════════════════════════╗");
+                        printxy(82, y+=1, "║                           ║");
+                        printxy(82, y+=1, "╚═══════════════════════════╝");
+                        printxy(84, y-1, $"{valor1} {valor2}");
                     }
                     auxiliar.agregarAlFinal(valor1, valor2);
                 } while (!(valor1.Equals(codigo)));
 
-                areaSeleccionada.contenedor(36, 0);
+                areaSeleccionada.contenedor(52, 0);
 
             y=15;
 
             do{
-                printxy(2, y, $"Se Retirara el contendor con codigo: {codigo}");
-                printxy(5, y+1, "Desea Confirmar El Retiro? S/N: ");
-                gotoxy(39, y+1);
+                printxy(0, y, $"Se Retirara el contendor con codigo: {codigo}");
+                printxy(0, y+1, "Desea Confirmar El Retiro? S/N: ");
+                gotoxy(32, y+1);
                 resp = Console.ReadLine().ToUpper();
-                if (resp != "S" && resp != "N") printxy(39, y+1, new String(' ', resp.Length));
+                if (resp != "S" && resp != "N") printxy(32, y+1, new String(' ', resp.Length));
             } while (resp != "S" && resp != "N") ;
 
             if (resp == "S"){
@@ -372,18 +373,15 @@ printxy(0, y+=1, "╚═══════════════════�
                         areaSeleccionada.agregarAlFinal(valor1, valor2);
                     }
 
+                gotoxy(57, y+=1); titulo(areaSeleccionada.ciudad);
+                gotoxy(86, y); titulo("Retirado");
                 
-                
-                gotoxy(7, y+=3); titulo(areaSeleccionada.ciudad);
-                gotoxy(37, y); titulo("Retirado");
-                
-                int y2 = areaSeleccionada.contenedor(0, y);
+                areaSeleccionada.contenedor(52, y);
 
                 Console.ForegroundColor = ConsoleColor.Red;
-                retiradosSeleccionados.retirado(30, y);
+                retiradosSeleccionados.retirado(82, y);
                 Console.ForegroundColor = ConsoleColor.Black;
 
-            y+=y2;
             } else {
                 while (auxiliar.contador != 0){
                         (valor1, valor2) = auxiliar.eliminarCima();
@@ -401,10 +399,10 @@ printxy(0, y+=1, "╚═══════════════════�
             }
 
             do{
-                printxy(2, y+1, "Retirar Otro Contentedor De La Ciudad? S/N: ");
-                gotoxy(46, y+1);
+                printxy(0, y+2, "Retirar Otro Contentedor De La Ciudad? S/N: ");
+                gotoxy(44, y+2);
                 resp = Console.ReadLine().ToUpper();
-                if (resp != "S" && resp != "N") printxy(46, y+1, new String(' ', resp.Length));
+                if (resp != "S" && resp != "N") printxy(44, y+2, new String(' ', resp.Length));
             } while (resp != "S" && resp != "N") ;
         } else {
             Console.Clear();
@@ -422,14 +420,15 @@ printxy(0, y+=1, "╚═══════════════════�
 
         y+=2;
             do{
-                printxy(3, y+1, "Desea Seguir Retirando Contenedores? S/N: ");
-                gotoxy(45, y+1);
+                printxy(0, y+2, "Desea Seguir Retirando Contenedores? S/N: ");
+                gotoxy(42, y+2);
                 resp = Console.ReadLine().ToUpper();
-                printxy(45, y+1, new String(' ', resp.Length));
+                printxy(42, y+2, new String(' ', resp.Length));
             } while (resp != "S" && resp != "N") ;
 
     } while (resp == "S");
 }
+
 
 public static void contenedoresCiudad() {
     string resp,lectura;
@@ -498,7 +497,6 @@ public static void contenedoresCiudad() {
 }
 
 
-
 public static void contenedoresTotales(){
     Console.Clear();
     int x=0,y=2, contenedores_totales=0;
@@ -517,12 +515,13 @@ y+=1;
         if (areas[i] != null) {
             areas[i].enlistarTotales(x, y);
         }
-        x+=33;
+        x+=23;
     }
 
     Console.WriteLine("\n\n\nPresione Enter Para Continuar... ");
     Console.ReadKey();
 }
+
 
 public static void contenedoresRetirados() {
     string resp,lectura;
