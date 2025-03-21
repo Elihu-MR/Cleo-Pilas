@@ -1,5 +1,9 @@
-﻿// Fecha 9/3/2025
-// Alumno: Moreno Ramirez Josue Elihu
+﻿// Fecha 20/3/2025
+// Equipo: 
+// Moreno Ramirez Josue Elihu
+// Meza Osuna Juan Manuel
+// Perez Salazar Jese Santiago
+
 // Cuatrimestre y Grupo: 4B
 
 namespace listasEnlazadas;
