@@ -1,9 +1,5 @@
-﻿// Fecha 20/3/2025
-// Equipo: 
-// Moreno Ramirez Josue Elihu
-// Meza Osuna Juan Manuel
-// Perez Salazar Jese Santiago
-
+﻿// Fecha 9/3/2025
+// Alumno: Moreno Ramirez Josue Elihu
 // Cuatrimestre y Grupo: 4B
 
 namespace listasEnlazadas;
@@ -190,7 +186,7 @@ public static void registrarCiudad() {
             printxy(0, y, "Registrar Otra Ciudad Nueva? S/N: ");
             gotoxy(33, y);
             resp = Console.ReadLine().ToUpper();
-            printxy(34, y, new String(' ', resp.Length));
+            printxy(33, y, new String(' ', resp.Length));
         } while (resp != "S" && resp != "N") ;
 
     } while (resp == "S");
@@ -264,7 +260,7 @@ printxy(0, y+=1, "╚═══════════════════�
             printxy(5, y, "¿Agregar Otro contenedor? S/N: ");
             gotoxy(36, y);
             resp = Console.ReadLine().ToUpper();
-            printxy(34, y, new String(' ', resp.Length));
+            printxy(36, y, new String(' ', resp.Length));
         } while (resp != "S" && resp != "N") ;
 
     } while (resp == "S");
@@ -364,7 +360,7 @@ printxy(0, y+=1, "╚═══════════════════�
                 printxy(5, y+1, "Desea Confirmar El Retiro? S/N: ");
                 gotoxy(39, y+1);
                 resp = Console.ReadLine().ToUpper();
-                printxy(40, y+1, new String(' ', resp.Length));
+                if (resp != "S" && resp != "N") printxy(39, y+1, new String(' ', resp.Length));
             } while (resp != "S" && resp != "N") ;
 
             if (resp == "S"){
@@ -408,7 +404,7 @@ printxy(0, y+=1, "╚═══════════════════�
                 printxy(2, y+1, "Retirar Otro Contentedor De La Ciudad? S/N: ");
                 gotoxy(46, y+1);
                 resp = Console.ReadLine().ToUpper();
-                printxy(47, y, new String(' ', resp.Length));
+                if (resp != "S" && resp != "N") printxy(46, y+1, new String(' ', resp.Length));
             } while (resp != "S" && resp != "N") ;
         } else {
             Console.Clear();
@@ -429,7 +425,7 @@ printxy(0, y+=1, "╚═══════════════════�
                 printxy(3, y+1, "Desea Seguir Retirando Contenedores? S/N: ");
                 gotoxy(45, y+1);
                 resp = Console.ReadLine().ToUpper();
-                printxy(46, y+1, new String(' ', resp.Length));
+                printxy(45, y+1, new String(' ', resp.Length));
             } while (resp != "S" && resp != "N") ;
 
     } while (resp == "S");
@@ -477,7 +473,7 @@ public static void contenedoresCiudad() {
             if (int.TryParse(lectura, out opcion) && opcion > 0 && opcion <= contador){
                 areaSeleccionada = areas[opcion-1];
             } else {
-                printxy(46, y, new String(' ', lectura.Length));
+                printxy(59, y, new String(' ', lectura.Length));
             }
         } while (opcion < 1 || opcion > contador);
 
@@ -495,7 +491,7 @@ public static void contenedoresCiudad() {
             printxy(5, y, "Desea Ver Contenedores De Otras Ciudades? S/N: ");
             gotoxy(52, y);
             resp = Console.ReadLine().ToUpper();
-            printxy(34, y, new String(' ', resp.Length));
+            printxy(52, y, new String(' ', resp.Length));
         } while (resp != "S" && resp != "N") ;
 
     } while (resp == "S");
@@ -569,7 +565,7 @@ public static void contenedoresRetirados() {
             if (int.TryParse(lectura, out opcion) && opcion > 0 && opcion <= contador){
                 retiradosSeleccionados = retirados[opcion-1];
             } else {
-                printxy(69, y, new String(' ', lectura.Length));
+                printxy(68, y, new String(' ', lectura.Length));
             }
         } while (opcion < 1 || opcion > contador);
 
@@ -587,7 +583,7 @@ public static void contenedoresRetirados() {
             printxy(5, y, "Desea Ver Contenedores De Otras Ciudades? S/N: ");
             gotoxy(52, y);
             resp = Console.ReadLine().ToUpper();
-            printxy(53, y, new String(' ', resp.Length));
+            printxy(52, y, new String(' ', resp.Length));
         } while (resp != "S" && resp != "N") ;
 
     } while (resp == "S");
