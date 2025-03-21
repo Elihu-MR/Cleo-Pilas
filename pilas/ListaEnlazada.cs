@@ -2,35 +2,28 @@ namespace listasEnlazadas;
 public class listasEnlazada{ // clase para enlazar nodos
     private Nodo primero;
     public string ciudad;
-    public int contador; // contador de cantidad de elementos en una lista
+    public int contador;
     public listasEnlazada(string Ciudad){ // constructor para establecer la liga del primer elemento
         primero = null;
         ciudad = Ciudad;
         contador = 0; // Limite de la pila: 5
     }
 
-// Crear pila vacia
-// Regresar cantidad de elementos
-// Devolver elementos de la fila
-// Devolver si la pila esta vacia
-// Devolver si la pila esta llena
-
     public void agregarAlFinal(object valor1, object valor2){ // Agregar al Final
         Nodo nuevoNodo = new Nodo (valor1, valor2);
-        if (primero == null){ // si no hay elementos en la lista
+        if (primero == null){
             primero = nuevoNodo;
         } else {
             Nodo actual = primero;
-            while (actual.Siguiente != null){ //recorre los nodos
-                actual = actual.Siguiente; //pasa de actual a siguiente cada vez que no hay elementos nulos
+            while (actual.Siguiente != null){
+                actual = actual.Siguiente;
             }
-            actual.Siguiente = nuevoNodo; // asigna como nuevo nodo al nodo ingresado (tras recorrer los nodos)
+            actual.Siguiente = nuevoNodo;
         }
         contador++;
     }
 
-
-    public (object,  object) eliminarCima(){ // Eliminar Ultimo Elemento
+    public (object,  object) eliminarCima(){ // Eliminar Ultimo de la pila
         if (primero == null) return (null, null);
         Nodo auxiliar;
 
@@ -51,7 +44,6 @@ public class listasEnlazada{ // clase para enlazar nodos
         }
     }
 
-
     public bool buscarPorValor(object valor){ // Buscar Por Valor
         Nodo actual = primero;
         while (actual != null){
@@ -63,33 +55,8 @@ public class listasEnlazada{ // clase para enlazar nodos
         return false;
     }
 
-    public int buscarPorValorIndice(object valor){ // Buscar Por Valor
-        if (primero == null){
-        Nodo actual = primero;
-        int i=1;
-        while (actual != null){
-            if (actual.Valor1.Equals(valor)){
-                return i;
-            }
-            actual = actual.Siguiente;
-            i++;
-        }
-        return 0;
-        } else return 0;
-    }
 
-    public (object,  object) buscarPorIndice(int indice){ // Buscar Por Indice
-        if (indice >= 0 && indice < contador){
-            Nodo actual = primero;
-            for (int i = 0; i < indice; i++){ actual = actual.Siguiente; }
-            return actual != null ? (actual.Valor1, actual.Valor2) : (null, null) ;
-        } else{
-            Console.WriteLine("\n Indice Fuera De Rango");
-            return (null, null);
-        }
-    }
-
-public void enlistar(int x, int  y){ // Mostrar Lista
+public void enlistar(int x, int  y){ // Muestra la ciudad y muestra los contenedores especificando sus posiciones y su codigo y empresa
 int posicion = 1, y2=y;
 Nodo actual = primero;
 printxy(x, y+=1, "╔═══════════════════════════════╗");
@@ -118,26 +85,33 @@ y2+=1;
     printxy(0,14,"");
 }
 
-public void contenedor(int x, int  y){ // Mostrar Lista
-int posicion = 1, y2=y;
+public int contenedor(int x, int  y){ // Muestra todos los contenedores de la lista
 Nodo actual = primero;
-
-printxy(x, y+=1, "╔═══════════════════════════╗");
-printxy(x, y+=1, "║                           ║");
-printxy(x, y+=1, "╚═══════════════════════════╝");
-printxy(39, y-1, $"{valor1} {valor2}");
-
-y2+=1;
+contador = 0;
     while (actual != null ){
-        printxy(x+3, y2+=1, $"{posicion}) {actual.Valor1}");
-        printxy(x+14, y2, $"{actual.Valor2}");
+        printxy(x, y+=1, "╔═══════════════════════════╗");
+        printxy(x, y+=1, "║                           ║");
+        printxy(x, y+=1, "╚═══════════════════════════╝");
+        printxy(x+2, y-1, $"{actual.Valor1} {actual.Valor2}");
         actual = actual.Siguiente;
-        posicion++;
+        contador += 3;
     }
-    printxy(0,14,"");
+    if (contador == 0) return 3;
+    else return contador;
 }
 
-public void enlistarTotales(int x, int  y){ // Mostrar Lista
+public void retirado(int x, int  y){ // Muestra Solo El Ultimo Contenedor de la lista (para mostrar contenedores retirados)
+Nodo actual = primero;
+    while (actual.Siguiente != null ){
+        actual = actual.Siguiente;
+    }
+    printxy(x, y+=1, "╔═══════════════════════════╗");
+    printxy(x, y+=1, "║                           ║");
+    printxy(x, y+=1, "╚═══════════════════════════╝");
+    printxy(x+2, y-1, $"{actual.Valor1} {actual.Valor2}");
+}
+
+public void enlistarTotales(int x, int  y){ // Muestra los contenedores actuales de cada ciudad y el total de contenedores actuales
 int posicion = 1, y2=y;
 Nodo actual = primero;
 printxy(x, y+=1, "╔═══════════════════════════════╗");
